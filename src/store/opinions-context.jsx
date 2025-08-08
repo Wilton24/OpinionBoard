@@ -2,9 +2,9 @@ import { createContext, useEffect, useState } from 'react';
 
 export const OpinionsContext = createContext({
   opinions: null,
-  addOpinion: (opinion) => {},
-  upvoteOpinion: (id) => {},
-  downvoteOpinion: (id) => {},
+  addOpinion: (opinion) => { },
+  upvoteOpinion: (id) => { },
+  downvoteOpinion: (id) => { },
 });
 
 export function OpinionsContextProvider({ children }) {

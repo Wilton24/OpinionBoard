@@ -1,6 +1,27 @@
 {
   "opinions": [
     {
+      "id": 1754738904650,
+      "votes": 0,
+      "userName": "lester",
+      "title": "trial",
+      "body": "Testing mic 123"
+    },
+    {
+      "id": 1754737291659,
+      "votes": 0,
+      "userName": "John",
+      "title": "Letter",
+      "body": "To the stupid Epistles"
+    },
+    {
+      "id": 1754677693778,
+      "votes": 0,
+      "userName": "Wilton",
+      "title": "Wukong",
+      "body": "Monkey king is back in Town!"
+    },
+    {
       "id": 1,
       "userName": "Maximilian Schwarzmüller",
       "title": "Do yourself a favor and learn React!",

@@ -39,31 +39,36 @@ export function OpinionsContextProvider({ children }) {
   }
 
   async function upvoteOpinion(id) {
-    setOpinions((prevOpinions) => {
-      return prevOpinions.map((opinion) => {
-        if (opinion.id === id) {
-          return { ...opinion, votes: opinion.votes + 1 };
-        }
-        return opinion;
-      });
-    });
+    try {
+      await upVoteApi(id);  // wait for the API call to succeed
 
-    await upVoteApi(id);
+      setOpinions((prevOpinions) =>
+        prevOpinions.map((opinion) =>
+          opinion.id === id ? { ...opinion, votes: opinion.votes + 1 } : opinion
+        )
+      );
 
+    } catch (error) {
+      console.error("Failed to upvote opinion:", error);
+    }
   }
+
 
   async function downvoteOpinion(id) {
-    setOpinions((prevOpinions) => {
-      return prevOpinions.map((opinion) => {
-        if (opinion.id === id) {
-          return { ...opinion, votes: opinion.votes - 1 };
-        }
-        return opinion;
-      });
-    });
+    try {
+      await downVoteApi(id);
 
-    await downVoteApi(id);
+      setOpinions((prevOpinions) =>
+        prevOpinions.map((opinion) =>
+          opinion.id === id ? { ...opinion, votes: opinion.votes - 1 } : opinion
+        )
+      );
+
+    } catch (error) {
+      console.error("Failed to downvote opinion:", error);
+    }
   }
+
 
   const contextValue = {
     opinions: opinions,

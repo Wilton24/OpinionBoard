@@ -2,21 +2,21 @@
   "opinions": [
     {
       "id": 1754738904650,
-      "votes": 0,
+      "votes": 2,
       "userName": "lester",
       "title": "trial",
       "body": "Testing mic 123"
     },
     {
       "id": 1754737291659,
-      "votes": 0,
+      "votes": 3,
       "userName": "John",
       "title": "Letter",
       "body": "To the stupid Epistles"
     },
     {
       "id": 1754677693778,
-      "votes": 0,
+      "votes": 4,
       "userName": "Wilton",
       "title": "Wukong",
       "body": "Monkey king is back in Town!"
@@ -33,7 +33,7 @@
       "userName": "Maximilian Schwarzmüller",
       "title": "React has more depth than you might first think!",
       "body": "React is a great library to learn, but it's not just about the basics. Dive deeper!\nFor example with this course!",
-      "votes": 0
+      "votes": 2
     }
   ]
 }

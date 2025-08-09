@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
+import { upVoteApi, downVoteApi } from "../utils/api"
 
 export const OpinionsContext = createContext({
   opinions: null,
@@ -37,7 +38,7 @@ export function OpinionsContextProvider({ children }) {
     setOpinions((prevOpinions) => [savedOpinion, ...prevOpinions]);
   }
 
-  function upvoteOpinion(id) {
+  async function upvoteOpinion(id) {
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
@@ -46,9 +47,12 @@ export function OpinionsContextProvider({ children }) {
         return opinion;
       });
     });
+
+    await upVoteApi(id);
+
   }
 
-  function downvoteOpinion(id) {
+  async function downvoteOpinion(id) {
     setOpinions((prevOpinions) => {
       return prevOpinions.map((opinion) => {
         if (opinion.id === id) {
@@ -57,6 +61,8 @@ export function OpinionsContextProvider({ children }) {
         return opinion;
       });
     });
+
+    await downVoteApi(id);
   }
 
   const contextValue = {

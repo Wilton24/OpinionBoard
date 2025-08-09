@@ -1,4 +1,20 @@
+import { useContext } from "react";
+import { OpinionsContext } from "../store/opinions-context";
+
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
+
+  const { upvoteOpinion, downvoteOpinion } = useContext(OpinionsContext);
+
+  function upVote(event) {
+    event.preventDefault();
+    upvoteOpinion(id)
+  }
+
+  function downVote(event) {
+    event.preventDefault();
+    downvoteOpinion(id)
+  }
+
   return (
     <article>
       <header>
@@ -7,7 +23,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button>
+        <button onClick={upVote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -27,7 +43,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
         <span>{votes}</span>
 
-        <button>
+        <button onClick={downVote}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

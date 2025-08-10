@@ -3,7 +3,7 @@ import { OpinionsContext } from "../store/opinions-context";
 
 export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
-  const { upvoteOpinion, downvoteOpinion } = useContext(OpinionsContext);
+  const { upvoteOpinion, downvoteOpinion, isVoting } = useContext(OpinionsContext);
 
   function upVote(event) {
     event.preventDefault();
@@ -23,7 +23,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
       </header>
       <p>{body}</p>
       <form className="votes">
-        <button onClick={upVote}>
+        <button onClick={upVote} disabled={isVoting} >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -43,7 +43,7 @@ export function Opinion({ opinion: { id, title, body, userName, votes } }) {
 
         <span>{votes}</span>
 
-        <button onClick={downVote}>
+        <button onClick={downVote} disabled={isVoting} >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

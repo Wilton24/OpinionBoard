@@ -3,6 +3,7 @@ import { upVoteApi, downVoteApi } from "../utils/api"
 
 export const OpinionsContext = createContext({
   opinions: null,
+  isVoting: Boolean,
   addOpinion: (opinion) => { },
   upvoteOpinion: (id) => { },
   downvoteOpinion: (id) => { },
@@ -10,6 +11,7 @@ export const OpinionsContext = createContext({
 
 export function OpinionsContextProvider({ children }) {
   const [opinions, setOpinions] = useState();
+  const [isVoting, setIsVoting] = useState(false);
 
   useEffect(() => {
     async function loadOpinions() {
@@ -40,7 +42,8 @@ export function OpinionsContextProvider({ children }) {
 
   async function upvoteOpinion(id) {
     try {
-      await upVoteApi(id);  // wait for the API call to succeed
+      setIsVoting(true);
+      await upVoteApi(id);
 
       setOpinions((prevOpinions) =>
         prevOpinions.map((opinion) =>
@@ -50,12 +53,14 @@ export function OpinionsContextProvider({ children }) {
 
     } catch (error) {
       console.error("Failed to upvote opinion:", error);
-    }
+    };
+    setIsVoting(false);
   }
 
 
   async function downvoteOpinion(id) {
     try {
+      setIsVoting(true);
       await downVoteApi(id);
 
       setOpinions((prevOpinions) =>
@@ -66,12 +71,14 @@ export function OpinionsContextProvider({ children }) {
 
     } catch (error) {
       console.error("Failed to downvote opinion:", error);
-    }
+    };
+    setIsVoting(false);
   }
 
 
   const contextValue = {
     opinions: opinions,
+    isVoting,
     addOpinion,
     upvoteOpinion,
     downvoteOpinion,
